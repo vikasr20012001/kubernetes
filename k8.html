@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta http-equiv="Cache-control" content="public">
+    <title> Kubernetes ( K8s )</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+    
+<body style="text-align: center;padding-top: 20PX;background-color:aqua;">
+    <i><h1 style="font-size: 40px";>Kubernetes </h1></i>
+<div>
+    <form>
+            <h2>LAUNCH POD</h2>
+    ENTER IMAGE NAME  <br/><br/> <input id="i1" type="text"  name="x" required/><br/><br/>
+    ENTER POD NAME  <br/><br/> <input id="i2" type="text"  name="y" required/><br/><br/>
+    <input onclick="my();cgi();" type="submit"/>
+    </form>
+<form>
+            <h2>CREATE DEPLOYMENT & EXPOSE & REPLICAS </h2>
+    ENTER IMAGE NAME  <br/><br/> <input id="b1" type="text"  name="a" required/><br/><br/>
+    ENTER POD NAME  <br/><br/> <input id="b2" type="text"  name="b" required/><br/><br/>
+    ENTER REPLICA NUMBER  <br/><br/> <input id="b3" type="number"  name="s" required/><br/><br/>
+    <input onclick="dep();" type="submit"/>
+    </form>
+
+   <h1 style="color: black;">K8s LIVE TERMINAL</h1>
+<strong>[k8s@root]#</strong><input id="doc" type="text" name="z"/><br/><br/>
+<input onclick="kube();" type="submit"/><br/><br/>
+</form>
+<article>Feature -</br>
+👉 It can launch pods with specific name given by user.</br> 
+👉 Run deployment using image and name given by user. </br>
+👉 Expose services on given user input port number. </br>
+👉 Scale the replica according to user need. </br>
+👉 Delete complete environment created. </br>
+👉 Delete specific resources given by user. </br>
+👉 Extra features related to k8s ( Optional) </article>
+</div>
+<script>
+    function my() {
+
+        x=document.getElementById("i1")
+        y=document.getElementById("i2")
+        a=x.value
+        b=y.value
+        alert("Image Name You Enter : " +a)
+        alert("POD: Name You Enter : " +b )
+
+
+
+    }
+     function cgi() {
+         var img=document.getElementById("i1").value
+         var cont=document.getElementById("i2").value
+        var xhr=new XMLHttpRequest();
+        xhr.open("GET","http://10.0.2.15/cgi-bin/k8s1.py?x="+img+"&y="+cont,false)
+        xhr.send()
+        var output1=xhr.responseText
+      
+        alert("!...output...!"+"\n"+output1)    
+   
+     }
+     function kube() {
+         var cmdval=document.getElementById("doc").value
+        var xhr=new XMLHttpRequest();
+        xhr.open("GET","http://10.0.2.15/cgi-bin/k8s2.py?z="+cmdval,false)
+        xhr.send()
+        var output2=xhr.responseText
+        alert("!...output...!"+"\n"+output2)
+     }
+     
+function dep() {
+         var img=document.getElementById("b1").value
+         var cont=document.getElementById("b2").value
+         var rep=document.getElementById("b3").value
+        var xhr=new XMLHttpRequest();
+        xhr.open("GET","http://10.0.2.15/cgi-bin/k8s3.py?a="+img+"&b="+cont+"&s="+rep,false)
+        xhr.send()
+        var output1=xhr.responseText
+      
+        alert("!...output...!"+"\n"+output1)    
+   
+     }
+
+
+</script>   
+</body>
+</html>
